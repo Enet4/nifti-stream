@@ -1,0 +1,31 @@
+{
+  "name": "nifti-stream",
+  "version": "0.1.0",
+  "description": "Simple stream-based NIfTI-1 data reader",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "mocha test/test.ts --require ts-node/register",
+    "test-debug": "mocha test/test.ts --require ts-node/register --debug-brk",
+    "build": "tsc",
+    "prepublish": "typings install && npm run build"
+  },
+  "keywords": [
+    "nifti",
+    "stream"
+  ],
+  "author": "Eduardo Pinho <enet4mikeenet@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "ts-node": "^0.5.5",
+    "typescript": "^1.8.2",
+    "typings": "^0.6.8"
+  },
+  "dependencies": {
+    "nifti-js": "^1.0.0"
+  }
+}

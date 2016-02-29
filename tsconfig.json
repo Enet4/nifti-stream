@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "rootDir": "src",
+        "outDir": "lib",
+        "target": "es5",
+        "sourceMap": true,
+        "module": "commonjs"
+    },
+    "exclude": [
+        "lib",
+        "test",
+        "node_modules",
+        "typings/browser",
+        "typings/main",
+        "typings/browser.d.ts"
+    ]
+}
