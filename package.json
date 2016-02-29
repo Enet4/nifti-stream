@@ -2,6 +2,12 @@
   "name": "nifti-stream",
   "version": "0.1.0",
   "description": "Simple stream-based NIfTI-1 data reader",
+  "author": "Eduardo Pinho <enet4mikeenet@gmail.com>",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/Enet4/nifti-stream"
+  },
+  "license": "MIT",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -17,8 +23,6 @@
     "nifti",
     "stream"
   ],
-  "author": "Eduardo Pinho <enet4mikeenet@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "mocha": "^2.4.5",
     "ts-node": "^0.5.5",
