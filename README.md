@@ -1,5 +1,7 @@
 # nifti-stream: Stream-based NIfTI-1 file reader
 
+[![version](https://img.shields.io/npm/v/nifti-stream.svg)](https://www.npmjs.org/package/nifti-stream) [![Build Status](https://travis-ci.org/Enet4/nifti-stream.svg?branch=master)](https://travis-ci.org/Enet4/nifti-stream)
+
 This package implements an asynchronous, stream-based reader of [NIfTI-1](http://nifti.nimh.nih.gov/nifti-1) files,
 a format defined by the Neuroimaging Informatics Technology Initiative (NIfTI).
 
