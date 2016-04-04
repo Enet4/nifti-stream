@@ -19,22 +19,22 @@ type ReadableStream = NodeJS.ReadableStream;
  * over the provided `NiftiVolumeStream` object.
  */
 export class NiftiStream extends EventEmitter {
-    public header:NiftiHeader = null;
-    public extensionData:Buffer = null;
-    private stream:ReadableStream;
-    private volumeStream:NiftiVolumeStream = null;
-    private triggered:boolean = false;
-    private phase:number = 0;
-    
+    public header: NiftiHeader = null;
+    public extensionData: Buffer = null;
+    private stream: ReadableStream;
+    private volumeStream: NiftiVolumeStream = null;
+    private triggered: boolean = false;
+    private phase: number = 0;
+
     constructor(input: NodeJS.ReadableStream) {
         super();
         this.stream = input;
     }
-    
+
     /** Listen to the availability of the full NIFTI header. Same as `on('header', ...)`.
      * @param callback handler function for nifti header
      */
-    public onNiftiHeader(callback: (header: NiftiHeader) => any) : this {
+    public onNiftiHeader(callback: (header: NiftiHeader) => any): this {
         return this.on('header', callback);
     }
 
@@ -42,53 +42,53 @@ export class NiftiStream extends EventEmitter {
      * This event might never be triggered if no extension data is available.
      * @param callback handler function for nifti header
      */
-    public onExtensionData(callback: (data: Buffer) => any) : this {
+    public onExtensionData(callback: (data: Buffer) => any): this {
         return this.on('extension', callback);
     }
-    
+
     /** Listen to the availability of the NIFTI volume stream. Same as `on('volume-stream', ...)`.
      * @param callback handler function for the nifti volume stream instance
      */
-    public onVolumeStream(callback: (stream: NiftiVolumeStream) => any) : this {
+    public onVolumeStream(callback: (stream: NiftiVolumeStream) => any): this {
         return this.on('volume-stream', callback);
     }
 
-    public on(event: string, callback: Function) : this {
+    public on(event: string, callback: Function): this {
         super.on(event, callback);
         this.flow();
         return this;
     }
 
-    public once(event: string, callback: Function) : this {
+    public once(event: string, callback: Function): this {
         super.once(event, callback);
         this.flow();
         return this;
     }
-    
-    public getExtensionData() : Buffer {
+
+    public getExtensionData(): Buffer {
         if (this.phase < 2) {
             throw new Error('Bad state: extension data is not available yet!');
         }
         return this.extensionData;
     }
-    
-    public getVolumeDataStream() : NiftiVolumeStream {
+
+    public getVolumeDataStream(): NiftiVolumeStream {
         if (this.phase !== 2) {
             throw new Error('Bad state: volume data stream is not available yet!');
         }
         return this.volumeStream;
     }
-    
+
     private flow() {
         if (this.triggered) return;
         this.triggered = true;
 
-        let bufs:Buffer[] = [];
+        let bufs: Buffer[] = [];
         let dataCount = 0;
-        let bytesPerVoxel:number = null;
-        let voxOffset:number = null;
-        let extensionOffset:number = null;
-        const onGetData = (data:Buffer) => {
+        let bytesPerVoxel: number = null;
+        let voxOffset: number = null;
+        let extensionOffset: number = null;
+        const onGetData = (data: Buffer) => {
             bufs.push(data);
             dataCount += (<Buffer>data).length;
             if (!this.header && dataCount >= 352) {
@@ -124,7 +124,7 @@ export class NiftiStream extends EventEmitter {
                 bufs = null;
             }
         };
-        
+
         this.stream.on('data', onGetData)
             .on('end', () => {
                 this.emit('end');

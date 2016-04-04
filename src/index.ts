@@ -6,7 +6,6 @@ export function fromStream(stream:NodeJS.ReadableStream) : NiftiStream {
     return new NiftiStream(stream);
 }
 
-
 export function fromFileSync(filename:string) : NiftiStream {
     accessSync(filename, R_OK);
     let stream:NodeJS.ReadableStream = createReadStream(filename);
@@ -30,6 +29,6 @@ export function fromFile(filename:string, callback:(error:Error, stream: NiftiSt
     });
 }
 
-export {NiftiHeader} from './header';
+export {NiftiHeader, NiftiDataType, NiftiUnit} from './header';
 export {NiftiStream} from './nifti';
 export {NiftiVolumeStream} from './volume';

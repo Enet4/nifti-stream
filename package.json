@@ -4,8 +4,8 @@
   "description": "Simple stream-based NIfTI-1 data reader",
   "author": "Eduardo Pinho <enet4mikeenet@gmail.com>",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/Enet4/nifti-stream"
+    "type": "git",
+    "url": "https://github.com/Enet4/nifti-stream"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -27,9 +27,8 @@
     "mocha": "^2.4.5",
     "ts-node": "^0.5.5",
     "typescript": "^1.8.2",
-    "typings": "^0.6.8"
+    "typings": "^0.7.8"
   },
   "dependencies": {
-    "nifti-js": "^1.0.0"
   }
 }

@@ -3,4 +3,5 @@ node_modules/
 lib/
 typings/browser*
 typings/main*
+nifti-1.h
 
