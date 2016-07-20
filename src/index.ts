@@ -29,6 +29,6 @@ export function fromFile(filename:string, callback:(error:Error, stream: NiftiSt
     });
 }
 
-export {NiftiHeader, NiftiDataType, NiftiUnit} from './header';
+export {NiftiHeader, NiftiDataType, NiftiUnit, getSpatialUnits, getTimeUnits} from './header';
 export {NiftiStream} from './nifti';
 export {NiftiVolumeStream} from './volume';

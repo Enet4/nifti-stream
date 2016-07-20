@@ -55,7 +55,7 @@ export interface NiftiHeader {
     scl_inter: number,
     slice_end: number,
     slice_code: number,
-    xyzt_units: NiftiUnit,
+    xyzt_units: number,
     cal_max: number,
     cal_min: number,
     slice_duration: number,
@@ -216,15 +216,15 @@ export function parseHeader(data: Buffer, bigEndian?:boolean) : NiftiHeader {
 //  int   sizeof_hdr;    /*!< MUST be 348           */  /* int sizeof_hdr;      */
     const sizeof_hdr = rbuf.nextInt();
 //  char  data_type[10]; /*!< ++UNUSED++            */  /* char data_type[10];  */
-    //const data_type = rbuf.nextBinary(10);
+    // const data_type = rbuf.nextBinary(10);
 //  char  db_name[18];   /*!< ++UNUSED++            */  /* char db_name[18];    */
-    //const db_name = rbuf.nextBinary(18);
+    // const db_name = rbuf.nextBinary(18);
 //  int   extents;       /*!< ++UNUSED++            */  /* int extents;         */
-    //const extents = rbuf.nextInt();
+    // const extents = rbuf.nextInt();
 //  short session_error; /*!< ++UNUSED++            */  /* short session_error; */
-    //const session_error = rbuf.nextByte();
+    // const session_error = rbuf.nextByte();
 //  char  regular;       /*!< ++UNUSED++            */  /* char regular;        */
-    //const regular = rbuf.nextByte();
+    // const regular = rbuf.nextByte();
     rbuf.skip(35); // 10 + 18 + 4 + 2 + 1
 //  char  dim_info;      /*!< MRI slice ordering.   */  /* char hkey_un0;       */
     const dim_info = rbuf.nextByte();
@@ -254,7 +254,7 @@ export function parseHeader(data: Buffer, bigEndian?:boolean) : NiftiHeader {
 //  float pixdim[8];     /*!< Grid spacings.        */  /* float pixdim[8];     */
     const pixdim = [];
     for (let i = 0 ; i < 8 ; i++) {
-        dim.push(rbuf.nextFloat());
+        pixdim.push(rbuf.nextFloat());
     }
 //  float vox_offset;    /*!< Offset into .nii file */  /* float vox_offset;    */
     const vox_offset = rbuf.nextFloat();
@@ -363,4 +363,12 @@ export function parseHeader(data: Buffer, bigEndian?:boolean) : NiftiHeader {
         intent_name,
         magic
     };
+}
+
+export function getSpatialUnits(header: NiftiHeader) : NiftiUnit {
+    return header.xyzt_units & 0x07;
+}
+
+export function getTimeUnits(header: NiftiHeader) : NiftiUnit {
+    return header.xyzt_units & 0x38;
 }
