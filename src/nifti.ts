@@ -11,9 +11,11 @@ type ReadableStream = NodeJS.ReadableStream;
  * 
  * (1) the `'header'` event is triggered when the NIFTI header has been
  * read and fully parsed.
+ * 
  * (2) the `'extension'` event is triggered when the extension data, if
  * available, has been fully read. When available, it must be parsed
  * manually.
+ * 
  * (3) the `'volume-stream'` event is triggered when the actual volume
  * data is ready to be read. At this point, reading must be performed
  * over the provided `NiftiVolumeStream` object.
