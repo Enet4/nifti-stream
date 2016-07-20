@@ -1,6 +1,6 @@
 {
   "name": "nifti-stream",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple stream-based NIfTI-1 data reader",
   "author": "Eduardo Pinho <enet4mikeenet@gmail.com>",
   "repository": {
